@@ -143,7 +143,7 @@ animate();
 const display = document.createElement( 'div' );
 display.className = 'display';
 display.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
-display.textContent="Wartosc";
+display.textContent="Element name";
 display.style.height="250px";
 display.style.width="600px";
 display.style.fontSize="50px";
