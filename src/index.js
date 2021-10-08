@@ -131,7 +131,7 @@ export let camera, scene, renderer, objectdisplay;
 let controls;
 
 export let display_value = "Value";
-
+let display_atomic_number = ' '
 const objects = [];
 const targets = { table: [], sphere: [], helix: [], grid: [] };
 
@@ -148,12 +148,20 @@ display.style.height="250px";
 display.style.width="600px";
 display.style.fontSize="50px";
 display.style.textAlign="center";
-display.style.lineHeight="3.8";
+display.style.lineHeight="2.8";
 
 objectdisplay = new CSS3DObject(display);
 objectdisplay.position.x = 70;
 objectdisplay.position.y = 500;
 objectdisplay.position.z = 0;
+
+
+
+const atomicnumber = document.createElement( 'div');
+atomicnumber.className = "atomicnumber";
+atomicnumber.textContent ="atomic number:" + display_atomic_number;
+atomicnumber.style.fontSize="40px";
+display.appendChild( atomicnumber );
 
 scene.add( objectdisplay);
 
@@ -390,8 +398,12 @@ for( let i = 0; i < table.length; i += 5 ){
     
     scene.remove(objectdisplay);
     display_value=table[i+1];
+    display_atomic_number=table[i+2];
     display.textContent=display_value;
+    atomicnumber.textContent ="atomic number:"+display_atomic_number;
+    display.appendChild( atomicnumber );
     scene.add(objectdisplay);
+   
   
   } );
 }
