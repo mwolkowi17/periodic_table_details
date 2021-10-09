@@ -155,7 +155,7 @@ objectdisplay = new CSS3DObject(display);
 objectdisplay.position.x = 70;
 objectdisplay.position.y = 500;
 objectdisplay.position.z = 0;
-//objects.push(display);
+
 targets.objectdisplay_s.push(objectdisplay);
 
 
@@ -327,6 +327,9 @@ function init() {
   buttonGrid.addEventListener('click', function () {
 
     transform(targets.grid, 2000);
+    objectdisplay.position.x = 0;
+    objectdisplay.position.y = 0;
+    objectdisplay.position.z = 500;
 
   });
 
