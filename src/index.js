@@ -127,12 +127,12 @@ const table = [
   "Og", "Oganesson", "(294)", 18, 7
 ];
 
-export let camera, scene, renderer, objectdisplay;
+let camera, scene, renderer, objectdisplay;
 let controls;
 
 export let display_value = "Value";
 let display_atomic_number = ' ';
-const objectdisplay_s = [];
+//const objectdisplay_s = [];
 const objects = [];
 const targets = { table: [], sphere: [], helix: [], grid: [], objectdisplay_s: [] };
 
@@ -155,6 +155,7 @@ objectdisplay = new CSS3DObject(display);
 objectdisplay.position.x = 70;
 objectdisplay.position.y = 500;
 objectdisplay.position.z = 0;
+//objects.push(display);
 targets.objectdisplay_s.push(objectdisplay);
 
 
@@ -331,7 +332,7 @@ function init() {
 
 
   transform(targets.table, 2000);
-
+ 
   //
 
   window.addEventListener('resize', onWindowResize);
