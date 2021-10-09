@@ -295,9 +295,10 @@ function init() {
   buttonTable.addEventListener('click', function () {
 
     transform(targets.table, 2000);
-    objectdisplay.position.x = 70;
-    objectdisplay.position.y = 500;
-    objectdisplay.position.z = 0;
+    display_tween(70,500,0,2000)
+    //objectdisplay.position.x = 70;
+    //objectdisplay.position.y = 500;
+    //objectdisplay.position.z = 0;
 
   });
 
@@ -305,10 +306,10 @@ function init() {
   buttonSphere.addEventListener('click', function () {
 
     transform(targets.sphere, 2000);
-
+    display_tween(0,0,0,2000)
     //transform(targets.objectdisplay_s, 2000);
-    objectdisplay.position.x = 0;
-    objectdisplay.position.y = 0;
+    //objectdisplay.position.x = 0;
+    //objectdisplay.position.y = 0;
 
 
   });
@@ -317,9 +318,10 @@ function init() {
   buttonHelix.addEventListener('click', function () {
 
     transform(targets.helix, 2000);
-    objectdisplay.position.x = 70;
-    objectdisplay.position.y = 700;
-    objectdisplay.position.z = 0;
+    display_tween(70,700,0,2000);
+    //objectdisplay.position.x = 70;
+    //objectdisplay.position.y = 700;
+    //objectdisplay.position.z = 0;
 
   });
 
@@ -327,9 +329,10 @@ function init() {
   buttonGrid.addEventListener('click', function () {
 
     transform(targets.grid, 2000);
-    objectdisplay.position.x = 0;
-    objectdisplay.position.y = 0;
-    objectdisplay.position.z = 500;
+    display_tween(0,0,500,2000);
+    //objectdisplay.position.x = 0;
+    //objectdisplay.position.y = 0;
+    //objectdisplay.position.z = 500;
 
   });
 
@@ -367,6 +370,26 @@ function transform(targets, duration) {
     .to({}, duration * 2)
     .onUpdate(render)
     .start();
+
+}
+
+// tween display function
+
+function display_tween(xpar,ypar,zpar,duration){
+
+  //TWEEN.removeAll();
+
+  const object = objectdisplay;
+
+  new TWEEN.Tween(object.position)
+  .to({ x: xpar, y: ypar, z: zpar }, Math.random() * duration + duration)
+  .easing(TWEEN.Easing.Exponential.InOut)
+  .start();
+
+  new TWEEN.Tween(this)
+  .to({}, duration * 2)
+  .onUpdate(render)
+  .start();
 
 }
 
