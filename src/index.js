@@ -161,7 +161,7 @@ targets.objectdisplay_s.push(objectdisplay);
 
 const atomicnumber = document.createElement('div');
 atomicnumber.className = "atomicnumber";
-atomicnumber.textContent = "atomic number:" + display_atomic_number;
+atomicnumber.textContent = "atomic weight:" + display_atomic_number;
 atomicnumber.style.fontSize = "40px";
 display.appendChild(atomicnumber);
 
@@ -439,7 +439,7 @@ for (let i = 0; i < table.length; i += 5) {
     display_value = table[i + 1];
     display_atomic_number = table[i + 2];
     display.textContent = display_value;
-    atomicnumber.textContent = "atomic number:" + display_atomic_number;
+    atomicnumber.textContent = "atomic weight:" + display_atomic_number;
     display.appendChild(atomicnumber);
     scene.add(objectdisplay);
 
