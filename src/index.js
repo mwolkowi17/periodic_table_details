@@ -448,7 +448,7 @@ for (let i = 0; i < table.length; i += 5) {
     display_atomic_number = table[i + 2];
     display_atomic_real_number=i+1;
     display.textContent = display_value;
-    atomicRealNumber.textContent = "atomic number:" + display_atomic_real_number;
+    atomicRealNumber.textContent = "atomic number:";
     atomicnumber.textContent = "atomic weight:" + display_atomic_number;
     display.appendChild(atomicRealNumber);
     display.appendChild(atomicnumber);
