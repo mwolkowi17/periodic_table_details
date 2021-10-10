@@ -132,6 +132,7 @@ let controls;
 
 export let display_value = "Value";
 let display_atomic_number = ' ';
+let display_atomic_real_number = '';
 //const objectdisplay_s = [];
 const objects = [];
 const targets = { table: [], sphere: [], helix: [], grid: [], objectdisplay_s: [] };
@@ -149,7 +150,7 @@ display.style.height = "250px";
 display.style.width = "600px";
 display.style.fontSize = "50px";
 display.style.textAlign = "center";
-display.style.lineHeight = "2.8";
+display.style.lineHeight = "1.8";
 
 objectdisplay = new CSS3DObject(display);
 objectdisplay.position.x = 70;
@@ -163,6 +164,13 @@ const atomicnumber = document.createElement('div');
 atomicnumber.className = "atomicnumber";
 atomicnumber.textContent = "atomic weight:" + display_atomic_number;
 atomicnumber.style.fontSize = "40px";
+
+
+const atomicRealNumber = document.createElement('div');
+atomicRealNumber.className = "atomicrealnumber";
+atomicRealNumber.textContent = "atomic number:";
+atomicRealNumber.style.fontSize = "40px";
+display.appendChild(atomicRealNumber);
 display.appendChild(atomicnumber);
 
 scene.add(objectdisplay);
@@ -438,8 +446,11 @@ for (let i = 0; i < table.length; i += 5) {
     scene.remove(objectdisplay);
     display_value = table[i + 1];
     display_atomic_number = table[i + 2];
+    display_atomic_real_number=i+1;
     display.textContent = display_value;
+    atomicRealNumber.textContent = "atomic number:" + display_atomic_real_number;
     atomicnumber.textContent = "atomic weight:" + display_atomic_number;
+    display.appendChild(atomicRealNumber);
     display.appendChild(atomicnumber);
     scene.add(objectdisplay);
 
