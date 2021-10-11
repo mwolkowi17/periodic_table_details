@@ -3,14 +3,14 @@ import * as THREE from 'three';
 import { TWEEN } from '../node_modules/three/examples/jsm/libs/tween.module.min.js';
 import { TrackballControls } from '../node_modules/three/examples/jsm/controls/TrackballControls.js';
 import { CSS3DRenderer, CSS3DObject } from '../node_modules/three/examples/jsm/renderers/CSS3DRenderer.js';
-import {table} from './data.js';
+import { table } from './data.js';
 
 
 
 let camera, scene, renderer, objectdisplay;
 let controls;
-let isTable=true;
-
+let isTable = true;
+let displayButton;
 export let display_value = "Value";
 let display_atomic_number = ' ';
 let display_atomic_real_number = '';
@@ -25,6 +25,7 @@ animate();
 
 const display = document.createElement('div');
 display.className = 'display';
+display.id = 'display';
 display.style.backgroundColor = 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')';
 display.textContent = "Element name";
 display.style.height = "250px";
@@ -172,7 +173,7 @@ function init() {
   renderer = new CSS3DRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.getElementById('container').appendChild(renderer.domElement);
-
+  
   //
 
   controls = new TrackballControls(camera, renderer.domElement);
@@ -184,7 +185,7 @@ function init() {
   buttonTable.addEventListener('click', function () {
 
     transform(targets.table, 2000);
-    display_tween(70,500,0,2000)
+    display_tween(70, 500, 0, 2000)
     //objectdisplay.position.x = 70;
     //objectdisplay.position.y = 500;
     //objectdisplay.position.z = 0;
@@ -195,8 +196,8 @@ function init() {
   buttonSphere.addEventListener('click', function () {
 
     transform(targets.sphere, 2000);
-    display_tween(0,0,0,2000);
-    isTable=false;
+    display_tween(0, 0, 0, 2000);
+    isTable = false;
     //transform(targets.objectdisplay_s, 2000);
     //objectdisplay.position.x = 0;
     //objectdisplay.position.y = 0;
@@ -208,8 +209,8 @@ function init() {
   buttonHelix.addEventListener('click', function () {
 
     transform(targets.helix, 2000);
-    display_tween(70,700,0,2000);
-    isTable=false;
+    display_tween(70, 700, 0, 2000);
+    isTable = false;
     //objectdisplay.position.x = 70;
     //objectdisplay.position.y = 700;
     //objectdisplay.position.z = 0;
@@ -220,8 +221,8 @@ function init() {
   buttonGrid.addEventListener('click', function () {
 
     transform(targets.grid, 2000);
-    display_tween(0,0,500,2000);
-    isTable=false
+    display_tween(0, 0, 500, 2000);
+    isTable = false
     //objectdisplay.position.x = 0;
     //objectdisplay.position.y = 0;
     //objectdisplay.position.z = 500;
@@ -230,7 +231,7 @@ function init() {
 
 
   transform(targets.table, 2000);
- 
+
   //
 
   window.addEventListener('resize', onWindowResize);
@@ -267,21 +268,21 @@ function transform(targets, duration) {
 
 // tween display function
 
-function display_tween(xpar,ypar,zpar,duration){
+function display_tween(xpar, ypar, zpar, duration) {
 
   //TWEEN.removeAll();
 
   const object = objectdisplay;
 
   new TWEEN.Tween(object.position)
-  .to({ x: xpar, y: ypar, z: zpar }, Math.random() * duration + duration)
-  .easing(TWEEN.Easing.Exponential.InOut)
-  .start();
+    .to({ x: xpar, y: ypar, z: zpar }, Math.random() * duration + duration)
+    .easing(TWEEN.Easing.Exponential.InOut)
+    .start();
 
   new TWEEN.Tween(this)
-  .to({}, duration * 2)
-  .onUpdate(render)
-  .start();
+    .to({}, duration * 2)
+    .onUpdate(render)
+    .start();
 
 }
 
@@ -327,23 +328,36 @@ for (let i = 0; i < table.length; i += 5) {
   const hbutton = document.getElementById(table[i]);
   hbutton.addEventListener('click', function () {
 
-    if(isTable===false){
+    if (isTable === false) {
       transform(targets.table, 2000);
     }
     //scene.remove(objectdisplay);
     display_value = table[i + 1];
     display_atomic_number = table[i + 2];
-    display_atomic_real_number=(i / 5)+1;
+    display_atomic_real_number = (i / 5) + 1;
     display.textContent = display_value;
     atomicRealNumber.textContent = "atomic number:" + display_atomic_real_number;
     atomicnumber.textContent = "atomic weight:" + display_atomic_number;
     display.appendChild(atomicRealNumber);
     display.appendChild(atomicnumber);
+    const container = document.getElementById('container');
+    container.appendChild(display)
     scene.add(objectdisplay);
-    display_tween(70,500,0,2000)
-
+    display_tween(70, 500, 0, 2000)
+    displayButton = document.getElementById('display');
+    buttonOn();
 
   });
 }
 
+
+
+function buttonOn() {
+  //displayButton = document.getElementById('display');
+  displayButton.addEventListener('click', function () {
+    
+    scene.remove(objectdisplay);
+
+  })
+}
 animate();
